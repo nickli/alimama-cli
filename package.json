@@ -1,12 +1,16 @@
 {
   "name": "alimama-cli",
-  "version": "0.0.2",
+  "version": "0.0.2001",
   "description": "List all the files in a directory!",
   "preferGlobal": "true",
   "bin": {
-    "nf": "./src/alimama-cli.js"
+    "gulp": "./src/alimama-cli.js"
   },
   "author": "chongzhi",
+  "dependencies": {
+    "gulp": "~3.9.0",
+    "gulp-shell": "~0.5.2"
+  },
   "engines": {
     "node": "*"
   }
