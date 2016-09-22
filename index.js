@@ -1,12 +1,10 @@
 #!/usr/bin/env node
 
-var exec = require('child_process').exec
-var cd = exec('gulp publish')
+var program = require('commander')
 
-cd.stdout.on('data', function(data) {
-  console.log(data)
-})
-cd.stderr.on('data', function(data) {
-  console.log(data)
-})
+var param = process.argv[2]
+param = param || 'init' //默认为init命令
+var command = require('./src/' + param)
 
+
+command()

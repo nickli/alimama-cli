@@ -1,15 +1,18 @@
 {
   "name": "alimama-cli",
-  "version": "0.0.2003",
+  "version": "0.0.201",
   "description": "List all the files in a directory!",
   "preferGlobal": "true",
   "bin": {
-    "cli": "index.js"
+    "mama": "index.js"
   },
   "author": "chongzhi",
   "dependencies": {
     "gulp": "~3.9.0",
-    "gulp-shell": "~0.5.2"
+    "gulp-shell": "~0.5.2",
+    "request": "",
+    "commander": "",
+    "prompt": ""
   },
   "engines": {
     "node": "*"
