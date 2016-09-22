@@ -11,5 +11,5 @@ cd.stderr.on('data', function(data) {
 })
 cd.stdin.on('data', function(data) {
   console.log(data)
-})
+});
 
