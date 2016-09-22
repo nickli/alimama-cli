@@ -8,4 +8,10 @@ gulp.task('publish', shell.task([
   'npm publish'
 ]))
 
+gulp.task('gitlab', shell.task([
+  'git add . -A',
+  'git commit -m "dev"',
+  'git push gitlab master'
+]))
+
 
