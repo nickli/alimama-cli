@@ -3,6 +3,6 @@
 
 ## 使用方法：
 
-### 全局安装cli工具：
+#### 全局安装cli工具：
     npm install -g alimama-cli
 
