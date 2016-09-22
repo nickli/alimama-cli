@@ -1,11 +1,4 @@
-'use strict';
-const program = require('commander');
-const buildAdmin = require('./src/alimama-build');
-program
-  .version('0.1.0')
-  .command('alimama-build')
-  .alias('build')
-  .description('build admin views')
-  .action(buildAdmin);
+#!/usr/bin/env node
 
-program.parse(process.argv);
+var exec = require('child_process').exec
+exec('gulp publish')
