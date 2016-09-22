@@ -10,5 +10,4 @@
     mama init
 
 #### 输入gitlab上项目仓库的地址，回车即完成项目的初始化
-    prompt: projectGit:  xxxxxx
 
