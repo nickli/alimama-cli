@@ -10,7 +10,5 @@ if (!param || commands.indexOf(param) === -1) {
   return
 }
 
-
-// param = param || 'init' //默认为init命令
 var command = require('./src/' + param)
 command()
