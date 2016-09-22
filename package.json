@@ -1,6 +1,6 @@
 {
   "name": "alimama-cli",
-  "version": "0.0.204",
+  "version": "0.0.205",
   "description": "List all the files in a directory!",
   "preferGlobal": "true",
   "bin": {
