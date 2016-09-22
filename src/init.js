@@ -4,6 +4,7 @@
  */
 var exec = require('child_process').exec
 var prompt = require('prompt')
+var colors = require('colors')
 
 module.exports = function() {
   var commandSplit = ';'
@@ -26,6 +27,9 @@ module.exports = function() {
     })
     child.stderr.on('data', function(data) {
       console.log(data)
+    })
+    child.on('close', function() {
+      console.log('项目初始化完成'.green)
     })
 
   })

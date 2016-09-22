@@ -12,7 +12,8 @@
     "gulp-shell": "~0.5.2",
     "request": "",
     "commander": "",
-    "prompt": ""
+    "prompt": "",
+    "colors": ""
   },
   "engines": {
     "node": "*"
