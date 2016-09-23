@@ -7,9 +7,10 @@ var fs = require('fs')
   // var prompt = require('prompt')
 var colors = require('colors')
 var readline = require('readline')
+var util = require('../util/util')
 
 module.exports = function() {
-  var commandSplit = ';'
+  var commandSplit = util.getCommandSplit()
 
   fs.stat('./.git', function(err, stats) {
     if (stats && stats.isDirectory()) { //已经存在 .git文件夹，说明已经初始化过

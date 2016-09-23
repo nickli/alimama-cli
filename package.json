@@ -1,7 +1,7 @@
 {
   "name": "alimama-cli",
   "version": "0.0.205",
-  "description": "List all the files in a directory!",
+  "description": "alimama command line tool!",
   "preferGlobal": "true",
   "bin": {
     "mama": "index.js"
