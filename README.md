@@ -7,7 +7,7 @@
 
     npm install -g alimama-cli
 
-执行:
+请先到gitlab上创建项目的仓库，然后执行:
 
     mama init [--n=cnpm]
 
