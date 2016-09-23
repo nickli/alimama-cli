@@ -13,7 +13,7 @@ var util = {
   },
 
   /**
-   * 解析 mama init --cnpm这种参数
+   * 解析 mama init --n=cnpm这种参数为 { n: 'cnpm'}
    */
   parseParams: function(argv) {
     var params = {}

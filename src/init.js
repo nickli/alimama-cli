@@ -18,6 +18,9 @@ module.exports = function() {
       output: process.stdout
     })
 
+    /*
+      根据项目名称创建项目目录，并clone脚手架代码到本地，然后更改git remote为项目git地址
+     */
     rl.question('['+ '请输入项目名称'.grey +']: ', function(name) {
       rl.question('['+ '请输入gitlab上创建好的仓库git地址'.grey +']: ', function(gitUrl) {
 
