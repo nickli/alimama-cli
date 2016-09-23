@@ -10,7 +10,24 @@ var util = {
     }
 
     return split
+  },
+
+  /**
+   * 解析 mama init --cnpm这种参数
+   */
+  parseParams: function(argv) {
+    var params = {}
+    argv.forEach(function(item, i) {
+      if (i >= 3) {
+        item = item.replace('--', '')
+        var arg = item.split('=')
+        params[arg[0]] = arg[1]
+      }
+    })
+
+    return params
   }
+
 }
 
 module.exports = util

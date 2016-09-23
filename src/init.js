@@ -4,21 +4,13 @@
  */
 var exec = require('child_process').exec
 var fs = require('fs')
-  // var prompt = require('prompt')
 var colors = require('colors')
 var readline = require('readline')
 var util = require('../util/util')
+var params = util.parseParams(process.argv)
 
 module.exports = function() {
   var commandSplit = util.getCommandSplit()
-
-  // fs.stat('./.git', function(err, stats) {
-  //   if (stats && stats.isDirectory()) { //已经存在 .git文件夹，说明已经初始化过
-  //     console.error('项目已经初始化过，请不要重复初始化'.red)
-  //   } else {
-  //     execute()
-  //   }
-  // })
 
   var execute = function() {
     var rl = readline.createInterface({
@@ -48,10 +40,19 @@ module.exports = function() {
           'git remote add origin git@gitlab.alibaba-inc.com:thx/scaffold.git',
           'git pull origin master',
           'git remote set-url origin ' + gitUrl,
-          'git push origin master'
+          'git push origin master',
+          'echo [开始安装项目相关的npm包，请稍等...]'
         ]
-        var child = exec(commands.join(commandSplit))
 
+        //默认用npm install安装包，可以配置mama init --n=cnpm 来选择cnpm install
+        var npmInstallCommand = 'npm install'
+        if (params.n) {
+          npmInstallCommand = params.n + ' install'
+        }
+        commands.push(npmInstallCommand)
+
+        //
+        var child = exec(commands.join(commandSplit))
         child.stdout.on('data', function(data) {
           console.log(data)
         })
