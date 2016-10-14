@@ -15,18 +15,18 @@
 【初始化过程会执行 npm install安装包，支持配置--n=cnpm换成cnpm install】
 
 
-### update 2016.10.14
+### [updated 2016.10.14]
   + 增加支持命令
 
 运行本地服务器，默认端口3000
 
     mama dev
 
-daily分支发布到日常 [by alimama-deploy]
+daily分支发布到日常 [powerd by alimama-deploy]
 
     mama daily
 
-master发布到cdn生产环境 [by alimama-deploy]
+master发布到cdn生产环境 [powerd by alimama-deploy]
 
     mama publish
 
