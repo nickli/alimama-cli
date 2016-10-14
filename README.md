@@ -14,3 +14,11 @@
 输入你的项目名，以及在gitlab上创建好的仓库git地址，即可完成项目的初始化
 【初始化过程会执行 npm install安装包，支持配置--n=cnpm换成cnpm install】
 
++ 增加支持命令
+运行本地服务器，默认端口3000
+    mama dev
+daily分支发布到日常 [by alimama-deploy]
+    mama daily
+master发布到cdn生产环境 [by alimama-deploy]
+    mama publish
+
