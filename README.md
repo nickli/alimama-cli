@@ -30,3 +30,6 @@ master发布到cdn生产环境 [powerd by alimama-deploy]
 
     mama publish
 
+辅助生成预设的view文件，包含view.html, view.js
+
+    mama view
