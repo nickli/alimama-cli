@@ -1,6 +1,6 @@
 {
   "name": "alimama-cli",
-  "version": "0.0.43",
+  "version": "0.0.44",
   "description": "alimama command line tool!",
   "preferGlobal": "true",
   "bin": {
@@ -14,7 +14,8 @@
     "commander": "",
     "prompt": "",
     "colors": "",
-    "fs-extra": "0.30.0"
+    "fs-extra": "0.30.0",
+    "bluebird": "3.4.6"
   },
   "engines": {
     "node": "*"

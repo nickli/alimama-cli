@@ -17,7 +17,7 @@ var rl = readline.createInterface({
 })
 
 module.exports = function() {
-  rl.question('【请输入完整viewName】：'.grey, function(name) {
+  rl.question('【请输入完整viewName】：'.yellow, function(name) {
     var splits = name.split('/')
     var fileName = splits[splits.length - 1]
     var jsFile = 'tmpl/' + name + '.js'
