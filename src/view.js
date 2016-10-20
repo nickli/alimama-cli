@@ -20,10 +20,20 @@ module.exports = function() {
   rl.question('【请输入完整viewName】：'.grey, function(name) {
     var splits = name.split('/')
     var fileName = splits[splits.length - 1]
+    var jsFile = 'tmpl/' + name + '.js'
+    var htmlFile = 'tmpl/' + name + '.html'
 
-    fse.outputFile('tmpl/' + name + '.js', jsTplFn(fileName), 'utf8', function() {
-      fse.outputFile('tmpl/' + name + '.html', htmlTplFn(fileName), 'utf8', function() {
-        console.log('【文件创建完毕】'.green)
+    fse.outputFile(jsFile, jsTplFn(fileName), 'utf8', function(err) {
+      if (err) {
+        return console.log(err)
+      }
+      console.log('[File created] '.green + jsFile)
+
+      fse.outputFile(htmlFile, htmlTplFn(fileName), 'utf8', function(_err) {
+        if (_err) {
+          return console.log(_err)
+        }
+        console.log('[File created] '.green + htmlFile)
       })
     })
 
