@@ -31,11 +31,11 @@
 
     mama dev
 
-daily分支发布到日常 `powerd by alimama-deploy`
+daily分支发布到日常 `powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)`
 
     mama daily
 
-master发布到cdn生产环境 `powerd by alimama-deploy`
+master发布到cdn生产环境 `powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)`
 
     mama publish
 
