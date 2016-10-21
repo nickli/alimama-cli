@@ -44,7 +44,7 @@ master发布到cdn生产环境 [powerd by [alimama-deploy](https://www.npmjs.com
 辅助生成预设的view文件，包含view.html, view.js
 
     mama view
-带type参数可以指定特定的模板
+带t参数可以指定特定的模板
   + `mama view --t=table`
   + `mama view --t=form`
 
