@@ -20,7 +20,7 @@
   + 输入你在gitlab创建好的项目的仓库地址
   + 输入你在RAP上创建好的项目的projectId
 
-系统会自动从scaffold脚手架仓库clone代码到你的本地，并且设置`git remote`为你在gitlab上创建的项目，并且`npm install`所有的工具包，你可以指定 `mama init --n=cnpm` 来更改为cnpm install避免被墙
+系统会自动从[scaffold](http://gitlab.alibaba-inc.com/thx/scaffold)脚手架仓库`clone`代码到你的本地，并且设置`git remote`为你在gitlab上创建的项目，并且`npm install`所有的工具包，你可以指定 `mama init --n=cnpm` 来更改为`cnpm install`避免被墙
 
   ![mama init](https://img.alicdn.com/tps/TB1LmWvNVXXXXc2XVXXXXXXXXXX-473-145.jpg)
 
@@ -31,11 +31,11 @@
 
     mama dev
 
-daily分支发布到日常 [powerd by alimama-deploy]
+daily分支发布到日常 `powerd by alimama-deploy`
 
     mama daily
 
-master发布到cdn生产环境 [powerd by alimama-deploy]
+master发布到cdn生产环境 `powerd by alimama-deploy`
 
     mama publish
 
