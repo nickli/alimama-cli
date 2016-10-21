@@ -7,13 +7,22 @@
 
     npm install -g alimama-cli
 
-请先到gitlab上创建项目的仓库，然后执行:
+在使用工具前请先做好几个准备工作
+
+  + 到gitlab上创建项目相应的仓库 ([Gitlab](http://gitlab.alibaba-inc.com))
+  + 到rap上创建相应的项目 ([RAP](http://rap.alibaba-inc.com))
+
+然后在你的工作目录执行
 
     mama init [--n=cnpm]
 
-输入你的项目名，以及在gitlab上创建好的仓库git地址，即可完成项目的初始化
-【初始化过程会执行 npm install安装包，支持配置--n=cnpm换成cnpm install】
+  + 输入你的项目名称（这个名称会作为你的项目文件夹名）
+  + 输入你在gitlab创建好的项目的仓库地址
+  + 输入你在RAP上创建好的项目的projectId
 
+系统会自动从scaffold脚手架仓库clone代码到你的本地，并且设置git remote为你在gitlab上创建的项目，并且npm install所有的工具包，你可以指定[--n=cnpm]来更改为cnpm install避免被墙
+
+  ![mama init](https://img.alicdn.com/tps/TB1LmWvNVXXXXc2XVXXXXXXXXXX-473-145.jpg)
 
 ### [updated 2016.10.14]
   + 增加支持命令
