@@ -16,10 +16,10 @@ var rl = readline.createInterface({
   output: process.stdout
 })
 
-//如果传入--type=table，则加载table的模板
-if (params.type) {
-  htmlTplFn = require('../tmpl/'+ params.type +'/html.js') //基础模板
-  jsTplFn = require('../tmpl/'+ params.type +'/js.js') //基础js
+//如果传入--t=table，则加载table的模板
+if (params.t) {
+  htmlTplFn = require('../tmpl/'+ params.t +'/html.js') //基础模板
+  jsTplFn = require('../tmpl/'+ params.t +'/js.js') //基础js
 }
 
 module.exports = function() {

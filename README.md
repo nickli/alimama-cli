@@ -45,8 +45,8 @@ master发布到cdn生产环境 [powerd by [alimama-deploy](https://www.npmjs.com
 
     mama view
 带type参数可以指定特定的模板
-  + `mama view --type=table`
-  + `mama view --type=form`
+  + `mama view --t=table`
+  + `mama view --t=form`
 
 黄金令箭埋点 [powerd by [gulp-magix-spmlog](https://www.npmjs.com/package/gulp-magix-spmlog)]
 
