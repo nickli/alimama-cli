@@ -7,7 +7,8 @@ var commands = [
   'dev', //运行本地服务器，并在浏览器打开
   'daily', //daily发布
   'publish', //cdn发布
-  'view' //生成最基础的Magix view, 包含html, js 文件
+  'view', //生成最基础的Magix view, 包含html, js 文件
+  'spmlog' //spm埋点
 ] //所有命令集合
 
 if (!param || commands.indexOf(param) === -1) {
