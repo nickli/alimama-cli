@@ -9,12 +9,18 @@ var readline = require('readline')
 var util = require('../util/util')
 var params = util.parseParams(process.argv)
 var fse = require('fs-extra')
-var htmlTplFn = require('../tmpl/html.js')
-var jsTplFn = require('../tmpl/js.js')
+var htmlTplFn = require('../tmpl/html.js') //基础模板
+var jsTplFn = require('../tmpl/js.js') //基础js
 var rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 })
+
+//如果传入--type=table，则加载table的模板
+if (params.type) {
+  htmlTplFn = require('../tmpl/'+ params.type +'/html.js') //基础模板
+  jsTplFn = require('../tmpl/'+ params.type +'/js.js') //基础js
+}
 
 module.exports = function() {
   rl.question('【请输入完整viewName】：'.yellow, function(name) {
