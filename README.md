@@ -14,13 +14,13 @@
 
 然后在你的工作目录执行
 
-    mama init [--n=cnpm]
+    mama init
 
   + 输入你的项目名称（这个名称会作为你的项目文件夹名）
   + 输入你在gitlab创建好的项目的仓库地址
   + 输入你在RAP上创建好的项目的projectId
 
-系统会自动从scaffold脚手架仓库clone代码到你的本地，并且设置git remote为你在gitlab上创建的项目，并且npm install所有的工具包，你可以指定[--n=cnpm]来更改为cnpm install避免被墙
+系统会自动从scaffold脚手架仓库clone代码到你的本地，并且设置`git remote`为你在gitlab上创建的项目，并且`npm install`所有的工具包，你可以指定 `mama init --n=cnpm` 来更改为cnpm install避免被墙
 
   ![mama init](https://img.alicdn.com/tps/TB1LmWvNVXXXXc2XVXXXXXXXXXX-473-145.jpg)
 
