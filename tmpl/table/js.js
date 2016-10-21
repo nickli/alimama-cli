@@ -10,6 +10,7 @@ module.exports = Magix.View.extend({
     render: function(e) {
         var me = this;
         me.data = {
+            value: 1,
             dropdownlist: [{
                 id: 1,
                 name: '下拉1'

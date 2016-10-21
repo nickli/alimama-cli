@@ -9,6 +9,7 @@ module.exports = Magix.View.extend({
     },
     render: function(e) {
         var me = this;
+        me.data = {}
         me.setVueHTML().then(function() {
 
         })

@@ -2,12 +2,12 @@ module.exports = function(name) {
     return `
 <div class="main-wrap">
 
-    <h3 class="content-title">标题</h3>
+    <h3 class="mb20">标题</h3>
 
-    <div class="mb20">
-        <div class="mr10 inline-block">
-            <select name="media" v-model="industryId" data-value='{{
-            industryId}}' bx-name="components/dropdown" mx-change="dropdownChange('industryId');">
+    <div class="mb20 clearfix">
+        <div class="mr10 inline-block pull-left">
+            <select name="media" v-model="value" data-value='{{
+            value}}' bx-name="components/dropdown" mx-change="dropdownChange('value');">
                 <option value="">全部所属行业</option>
                 <option v-for="item in dropdownlist" value="{{item.id}}">{{item.name}}</option>
             </select>
@@ -16,8 +16,8 @@ module.exports = function(name) {
             <input v-model="keyWord" placeholder="请输入品牌名称或ID" />
         </div>
     </div>
-    <div style="padding-bottom:50px;">
-        <table class="table" bx-name="app/gallery/table/table">
+    <div>
+        <table class="table" bx-name="app/gallery/table/table" style="margin-bottom: 0;">
             <tr>
                 <th>数据列名</th>
                 <th>数据列名</th>
