@@ -26,8 +26,7 @@
 
   ![mama init](https://img.alicdn.com/tps/TB1bq1FNVXXXXbIXVXXXXXXXXXX-477-311.jpg)
 
-### [updated 2016.10.14]
-  + 增加支持命令
+### 支持的命令列表 [updated 2016.10.14]
 
 运行本地服务器，默认端口3000
 
