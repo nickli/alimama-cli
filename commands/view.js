@@ -2,16 +2,16 @@
  * 生成最基础的Magix view, 包含html, js 文件
  * @type {[type]}
  */
-var exec = require('child_process').exec
-var fs = require('fs')
-var colors = require('colors')
-var readline = require('readline')
-var util = require('../util/util')
-var params = util.parseParams(process.argv)
-var fse = require('fs-extra')
-var htmlTplFn = require('../tmpl/html.js') //基础模板
-var jsTplFn = require('../tmpl/js.js') //基础js
-var rl = readline.createInterface({
+let exec = require('child_process').exec
+let fs = require('fs')
+let colors = require('colors')
+let readline = require('readline')
+let util = require('../util/util')
+let params = util.parseParams(process.argv)
+let fse = require('fs-extra')
+let htmlTplFn = require('../tmpl/html.js') //基础模板
+let jsTplFn = require('../tmpl/js.js') //基础js
+let rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 })
@@ -24,10 +24,10 @@ if (params.t) {
 
 module.exports = function() {
   rl.question('【请输入完整viewName】：'.yellow, function(name) {
-    var splits = name.split('/')
-    var fileName = splits[splits.length - 1]
-    var jsFile = 'tmpl/' + name + '.js'
-    var htmlFile = 'tmpl/' + name + '.html'
+    let splits = name.split('/')
+    let fileName = splits[splits.length - 1]
+    let jsFile = 'tmpl/' + name + '.js'
+    let htmlFile = 'tmpl/' + name + '.html'
 
     fse.outputFile(jsFile, jsTplFn(fileName), 'utf8', function(err) {
       if (err) {

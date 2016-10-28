@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 var colors = require('colors')
-var program = require('commander')
 var param = process.argv[2]
 var commands = [
   'init', //项目初始化
@@ -16,5 +15,5 @@ if (!param || commands.indexOf(param) === -1) {
   return
 }
 
-var command = require('./src/' + param)
+var command = require('./commands/' + param)
 command()

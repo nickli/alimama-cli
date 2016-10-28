@@ -3,21 +3,21 @@
  * 项目运行命令，包含启动服务器，watch [tpl-->src]
  * @type {[type]}
  */
-var exec = require('child_process').exec
-var fs = require('fs')
-var colors = require('colors')
-var readline = require('readline')
-var util = require('../util/util')
-var params = util.parseParams(process.argv)
+let exec = require('child_process').exec
+let fs = require('fs')
+let colors = require('colors')
+let readline = require('readline')
+let util = require('../util/util')
+let params = util.parseParams(process.argv)
 
 module.exports = function() {
-  var commandSplit = util.getCommandSplit()
-  var commands = [
-    'gulp dev'
+  let commandSplit = util.getCommandSplit()
+  let commands = [
+    'gulp daily'
   ]
 
   //
-  var child = exec(commands.join(commandSplit))
+  let child = exec(commands.join(commandSplit))
   child.stdout.on('data', function(data) {
     console.log(data)
   })

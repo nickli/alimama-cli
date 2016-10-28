@@ -2,18 +2,18 @@
  * 项目初始化命令
  * @params
  */
-var exec = require('child_process').exec
-var fs = require('fs')
-var colors = require('colors')
-var readline = require('readline')
-var util = require('../util/util')
-var params = util.parseParams(process.argv)
+let exec = require('child_process').exec
+let fs = require('fs')
+let colors = require('colors')
+let readline = require('readline')
+let util = require('../util/util')
+let params = util.parseParams(process.argv)
 
 module.exports = function() {
-  var commandSplit = util.getCommandSplit()
+  let commandSplit = util.getCommandSplit()
 
-  var execute = function() {
-    var rl = readline.createInterface({
+  let execute = function() {
+    let rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout
     })
@@ -38,7 +38,7 @@ module.exports = function() {
               return
             }
 
-            var commands = [
+            let commands = [
               'mkdir ' + name,
               'cd ' + name,
               'git init',
@@ -50,14 +50,14 @@ module.exports = function() {
             ]
 
             //默认用npm install安装包，可以配置mama init --n=cnpm 来选择cnpm install
-            var npmInstallCommand = 'npm install'
+            let npmInstallCommand = 'npm install'
             if (params.n) {
               npmInstallCommand = params.n + ' install'
             }
             commands.push(npmInstallCommand)
 
             //
-            var child = exec(commands.join(commandSplit))
+            let child = exec(commands.join(commandSplit))
             child.stdout.on('data', function(data) {
               console.log(data)
             })
@@ -85,12 +85,12 @@ module.exports = function() {
   }
 
   //读取index.html，写入rap的projectId
-  var setRapProjectId = function(projectId, name) {
-    var fileName = name + '/index.html'
+  let setRapProjectId = function(projectId, name) {
+    let fileName = name + '/index.html'
     fs.readFile(fileName, 'utf8', function(err, data) {
       if (err) return console.log(err)
 
-      var result = data.replace(/http\:\/\/rap\.alibaba\-inc\.com\/rap\.plugin\.js\?projectId\=\d+/, 'http://rap.alibaba-inc.com/rap.plugin.js?projectId=' + projectId)
+      let result = data.replace(/http\:\/\/rap\.alibaba\-inc\.com\/rap\.plugin\.js\?projectId\=\d+/, 'http://rap.alibaba-inc.com/rap.plugin.js?projectId=' + projectId)
 
       fs.writeFile(fileName, result, 'utf8', function(_err) {
         if (_err) return console.log(_err)
@@ -100,12 +100,12 @@ module.exports = function() {
   }
 
   //读取gulpfile.js更改spmlog的logkey
-  var setSpmLogkey = function(logkey, name) {
-    var fileName = name + '/gulpfile.js'
+  let setSpmLogkey = function(logkey, name) {
+    let fileName = name + '/gulpfile.js'
     fs.readFile(fileName, 'utf8', function(err, data) {
       if (err) return console.log(err)
 
-      var result = data.replace(/logkey\s*\:\s*\'.+\'/, "logkey: '" + logkey + "'")
+      let result = data.replace(/logkey\s*\:\s*\'.+\'/, "logkey: '" + logkey + "'")
 
       fs.writeFile(fileName, result, 'utf8', function(_err) {
         if (_err) return console.log(_err)
