@@ -11,20 +11,9 @@ let util = require('../util/util')
 let params = util.parseParams(process.argv)
 
 module.exports = function() {
-  let commandSplit = util.getCommandSplit()
   let commands = [
     'gulp dev'
   ]
 
-  //
-  let child = exec(commands.join(commandSplit))
-  child.stdout.on('data', function(data) {
-    console.log(data)
-  })
-  child.stderr.on('data', function(data) {
-    console.log(data)
-  })
-  child.on('error', function(err) {
-    console.log(err)
-  })
+  util.execCommand(commands)
 }
