@@ -15,11 +15,11 @@ module.exports = function() {
     output: process.stdout
   })
 
-  //读取index.html，写入rap的projectId
+  //读取matfile.js，写入rap的projectId
   let setRapProjectId = function(projectId, name) {
-    let fileName = name + '/index.html'
+    let fileName = name + '/matfile.js'
     let data = fs.readFileSync(fileName, 'utf8')
-    let result = data.replace(/\/\/rap\.alibaba\-inc\.com\/rap\.plugin\.js\?projectId\=\d+/, '//rap.alibaba-inc.com/rap.plugin.js?projectId=' + projectId)
+    let result = data.replace(/projectId\s*\:\s*\'\d+\'/, "projectId: '" + projectId + "'")
 
     fs.writeFileSync(fileName, result, 'utf8')
   }
@@ -32,6 +32,7 @@ module.exports = function() {
 
     fs.writeFileSync(fileName, result, 'utf8')
   }
+
 
   //读取gulpfile.js更改spmlog的logkey
   let setSpmLogkey = function(logkey, name) {
@@ -95,9 +96,12 @@ module.exports = function() {
 
           //默认用npm install安装包，可以配置mama init --n=cnpm 来选择cnpm install
           let npmInstallCommand = 'npm install'
-          if (params.n) {
-            npmInstallCommand = params.n + ' install'
+
+          for (let k in params) {
+            npmInstallCommand = k + ' install'
+            break
           }
+
           lastCommands.push(npmInstallCommand)
 
           util.execCommand(lastCommands).then(function() {

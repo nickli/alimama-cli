@@ -17,23 +17,29 @@
 
     mama init
 
-  + 输入你的项目名称（这个名称会作为你的项目文件夹名）
-  + 输入你在gitlab创建好的项目的仓库地址
+  + 输入你在gitlab创建好的项目的仓库地址(会在当前目录下创建以你仓库名称为名的文件夹)
   + 输入你在RAP上创建好的项目的projectId(非必填)
   + 输入你在黄金令箭上创建好的场景ID[非必填]
 
-系统会自动从[scaffold](http://gitlab.alibaba-inc.com/thx/scaffold)脚手架仓库`clone`代码到你的本地，并且设置`git remote`为你在gitlab上创建的项目，并且`npm install`所有的工具包，你可以指定 `mama init --n=cnpm` 来更改为`cnpm install`避免被墙
+系统会自动从[scaffold](http://gitlab.alibaba-inc.com/thx/scaffold)脚手架仓库`clone`代码到你的本地，并且设置`git remote`为你在gitlab上创建的项目，并且`npm install`所有的工具包，你可以指定 `mama init --cnpm|tnpm` 来更改为`cnpm|tnpm install`避免被墙
 
   ![mama init](https://img.alicdn.com/tps/TB1bq1FNVXXXXbIXVXXXXXXXXXX-477-311.jpg)
 
 
 
-
 ## 支持的命令列表：
 
-运行本地服务器，默认端口3000
+运行mat本地服务器，默认端口8989，默认启动接口rap化
 
     mama dev
+
+可以指定端口
+
+    mama dev --port=7777
+
+可以切换接口访问真实daily接口，指定daily的ip地址
+
+    mama dev --daily=10.22.34.55
 
 daily分支发布到日常 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]
 
@@ -46,9 +52,9 @@ master发布到cdn生产环境 [powerd by [alimama-deploy](https://www.npmjs.com
 辅助生成预设的view文件，包含view.html, view.js
 
     mama view
-带 t 参数可以指定特定的模板
-  + `mama view --t=table`
-  + `mama view --t=form`
+可以指定特定的模板
+  + `mama view --table`
+  + `mama view --form`
 
 黄金令箭埋点 [powerd by [gulp-magix-spmlog](https://www.npmjs.com/package/gulp-magix-spmlog)]
 

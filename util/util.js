@@ -23,7 +23,7 @@ let util = {
       if (i >= 3) {
         item = item.replace('--', '')
         let arg = item.split('=')
-        params[arg[0]] = arg[1]
+        params[arg[0]] = arg[1] || true
       }
     })
 

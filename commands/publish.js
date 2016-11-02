@@ -12,7 +12,7 @@ let params = util.parseParams(process.argv)
 
 module.exports = function() {
   let commands = [
-    'gulp publish'
+    'npm run publish'
   ]
 
   util.execCommand(commands)

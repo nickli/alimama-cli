@@ -1,4 +1,3 @@
-
 /**
  * 项目运行命令，包含启动服务器，watch [tpl-->src]
  * @type {[type]}
@@ -11,9 +10,28 @@ let util = require('../util/util')
 let params = util.parseParams(process.argv)
 
 module.exports = function() {
-  let commands = [
-    'gulp dev'
-  ]
+  let command = 'npm run mat-rap'
 
-  util.execCommand(commands)
+  //设置端口
+  if (params.port && params.port !== true) {
+    let fileName = 'matfile.js'
+    let data = fs.readFileSync(fileName, 'utf8')
+    let result = data.replace(/port\s*\:\s*\'\d+\'/, "port: '" + params.port + "'")
+    fs.writeFileSync(fileName, result, 'utf8')
+  }
+
+  //切换至daily环境
+  if (params.daily) {
+    command = 'npm run mat-daily'
+
+    //mama dev --daily=123.32.43.55 ，把matfile.js里的proxyPass改了
+    if (params.daily !== true) {
+      let fileName = 'matfile.js'
+      let data = fs.readFileSync(fileName, 'utf8')
+      let result = data.replace(/proxyPass\s*\:\s*\'.+\'/, "proxyPass: '" + params.daily + "'")
+      fs.writeFileSync(fileName, result, 'utf8')
+    }
+  }
+
+  util.execCommand([command])
 }

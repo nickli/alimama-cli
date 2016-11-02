@@ -12,7 +12,7 @@ let params = util.parseParams(process.argv)
 
 module.exports = function() {
   let commands = [
-    'gulp spmlog'
+    'npm run spmlog'
   ]
 
   util.execCommand(commands)

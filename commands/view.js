@@ -16,13 +16,26 @@ let rl = readline.createInterface({
   output: process.stdout
 })
 
-//如果传入--t=table，则加载table的模板
-if (params.t) {
-  htmlTplFn = require('../tmpl/'+ params.t +'/html.js') //基础模板
-  jsTplFn = require('../tmpl/'+ params.t +'/js.js') //基础js
-}
+
+// if (params.t) {
+//   htmlTplFn = require('../tmpl/'+ params.t +'/html.js') //基础模板
+//   jsTplFn = require('../tmpl/'+ params.t +'/js.js') //基础js
+// }
 
 module.exports = function() {
+
+  //如果传入--t=table，则加载table的模板
+  for (let k in params) {
+    try {
+      htmlTplFn = require('../tmpl/' + k + '/html.js') //基础模板
+      jsTplFn = require('../tmpl/' + k + '/js.js') //基础js
+    } catch (err) {
+      console.log('不存在该模板，请确认模板名是否正确'.red)
+      return rl.close()
+    }
+    break;
+  }
+
   rl.question('【请输入完整viewName】：'.yellow, function(name) {
     let splits = name.split('/')
     let fileName = splits[splits.length - 1]
