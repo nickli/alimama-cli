@@ -12,7 +12,7 @@ let params = util.parseParams(process.argv)
 module.exports = function() {
   let command = 'npm run mat-rap'
 
-  //设置端口
+  //设置端口，把matfile.js里的port改了
   if (params.port && params.port !== true) {
     let fileName = 'matfile.js'
     let data = fs.readFileSync(fileName, 'utf8')
