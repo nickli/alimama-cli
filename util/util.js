@@ -1,5 +1,6 @@
 'use strict'
 let exec = require('child_process').exec
+let fs = require('fs')
 
 let util = {
   /**
@@ -56,6 +57,36 @@ let util = {
       })
     })
 
+  },
+
+  /**
+   * 递归往上寻找matfile.js gulpfile.js等文件
+   * @param  {[type]} fileName [description]
+   * @return {[type]}          [description]
+   */
+  getConfigFile: function(fileName) {
+    var cwd = process.cwd().split('/')
+
+    return new Promise(function(resolve, reject) {
+      let isExistFile = function(path) {
+        if (path.length === 0) {
+          reject('文件不存在')
+          return
+        }
+        let _file = path.join('/') + '/' + fileName
+        fs.stat(_file, function(err, stats) {
+          if (!err) {
+            resolve(_file)
+          } else {
+            path.pop()
+            isExistFile(path)
+          }
+        })
+      }
+
+      isExistFile(cwd)
+
+    })
   }
 }
 
