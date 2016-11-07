@@ -44,7 +44,7 @@ master发布到cdn生产环境 [powerd by [alimama-deploy](https://www.npmjs.com
 
     mama publish
 
-辅助生成预设的view文件，包含view.html, view.js
+辅助生成预设的view文件，包含view.html, view.js，支持输入目录结构(exp: src/app/views/test)
 
     mama view
 可以指定特定的模板

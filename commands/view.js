@@ -37,11 +37,11 @@ module.exports = function() {
     break;
   }
 
-  rl.question('【请输入完整viewName】：'.yellow, function(name) {
+  rl.question('【请输入viewName，支持目录结构】：'.yellow, function(name) {
     let splits = name.split('/')
     let fileName = splits[splits.length - 1]
-    let jsFile = 'tmpl/' + name + '.js'
-    let htmlFile = 'tmpl/' + name + '.html'
+    let jsFile = name + '.js'
+    let htmlFile = name + '.html'
 
     fse.outputFile(jsFile, jsTplFn(fileName), 'utf8', function(err) {
       if (err) {
