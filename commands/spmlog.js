@@ -1,4 +1,4 @@
-
+'use strict'
 /**
  * 埋点
  * @type {[type]}

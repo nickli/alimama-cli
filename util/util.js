@@ -1,3 +1,4 @@
+'use strict'
 let exec = require('child_process').exec
 
 let util = {

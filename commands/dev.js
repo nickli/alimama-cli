@@ -1,3 +1,4 @@
+'use strict'
 /**
  * 项目运行命令，包含启动服务器，watch [tpl-->src]
  * @type {[type]}

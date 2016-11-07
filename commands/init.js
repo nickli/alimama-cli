@@ -1,3 +1,4 @@
+'use strict'
 /**
  * 项目初始化命令
  * @params
