@@ -23,7 +23,7 @@
 
 系统会自动从[scaffold](http://gitlab.alibaba-inc.com/thx/scaffold)脚手架仓库`clone`代码到你的本地，并且设置`git remote`为你在gitlab上创建的项目，并且`npm install`所有的工具包，你可以指定 `mama init --cnpm|tnpm` 来更改为`cnpm|tnpm install`避免被墙
 
-  ![mama init](https://img.alicdn.com/tps/TB1bq1FNVXXXXbIXVXXXXXXXXXX-477-311.jpg)
+  ![mama init](https://img.alicdn.com/tps/TB13s6gOXXXXXX9XXXXXXXXXXXX-475-306.png)
 
 
 
