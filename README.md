@@ -29,7 +29,7 @@
 
 ## 支持的命令列表：
 
-运行mat本地服务器，默认端口8989，默认启动接口rap化
+运行mat本地服务器，默认端口8989，默认启动接口rap化（支持反向代理）
 
     mama dev
 
@@ -44,7 +44,7 @@ master发布到cdn生产环境 [powerd by [alimama-deploy](https://www.npmjs.com
 
     mama publish
 
-辅助生成预设的view文件，包含view.html, view.js，支持输入目录结构(exp: src/app/views/test)
+在当前目录下生成预设的view文件，包含view.html, view.js，支持输入目录结构(exp: src/app/views/test)
 
     mama view
 可以指定特定的模板
