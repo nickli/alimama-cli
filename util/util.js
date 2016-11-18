@@ -76,7 +76,7 @@ let util = {
         let _file = path.join('/') + '/' + fileName
         fs.stat(_file, function(err, stats) {
           if (!err) {
-            resolve(_file)
+            resolve(path)
           } else {
             path.pop()
             isExistFile(path)

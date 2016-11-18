@@ -16,20 +16,21 @@ module.exports = function() {
   util.getConfigFile('node_modules').then(function() {
     execDev([])
   }, function(err) { //不存在 node_modules
+    util.getConfigFile('package.json').then(function(path) { //根据package.json来确定npm install的路径
       //默认用npm install安装包，可以配置mama init --n=cnpm 来选择cnpm install
-    let npmInstallCommand = 'npm install'
-    if (params.n) {
-      npmInstallCommand = params.n + ' install'
-    }
-    execDev([npmInstallCommand])
+      let npmInstallCommand = 'npm install'
+      if (params.n) {
+        npmInstallCommand = params.n + ' install'
+      }
+      util.execCommand(['cd ' + path.join('/'), npmInstallCommand])
+    })
   })
 
-  //--------------------------------------------
-  //--------------------------------------------
+  //启动mat反向代理服务器
   let _matfile = 'matfile.js'
   let execDev = function(commands) {
-    util.getConfigFile(_matfile).then(function(matFile) {
-
+    util.getConfigFile(_matfile).then(function(path) {
+      let matFile = path.join('/') + '/' + _matfile
       let command = 'npm run mat-rap'
 
       //设置端口，把matfile.js里的port改了

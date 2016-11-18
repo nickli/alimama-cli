@@ -25,13 +25,18 @@ module.exports = function() {
     fs.writeFileSync(fileName, result, 'utf8')
   }
 
-  //读取index.html，更改daily及cdn的地址
-  let setCdnUrl = function(name) {
-    let fileName = name + '/index.html'
-    let data = fs.readFileSync(fileName, 'utf8')
+  //设置项目名称
+  let setNameConfig = function(name) {
+    let indexFile = name + '/index.html'
+    let data = fs.readFileSync(indexFile, 'utf8')
     let result = data.replace(/thx\/scaffold/g, 'mm/' + name)
+    result = result.replace(/\<title\>.*\<\/title\>/, '<title>' + name + '</title>') //更改title
+    fs.writeFileSync(indexFile, result, 'utf8')
 
-    fs.writeFileSync(fileName, result, 'utf8')
+    let packageFile = name + '/package.json'
+    let packageData = fs.readFileSync(packageFile, 'utf8')
+    let packageResult = packageData.replace(/\"name\"\s*\:\s*\".*\"/, '"name": "' + name + '"')
+    fs.writeFileSync(packageFile, packageResult, 'utf8')
   }
 
 
@@ -77,7 +82,7 @@ module.exports = function() {
 
         //执行clone scaffold脚手架仓库命令
         util.execCommand(commands).then(function() {
-          setCdnUrl(name)
+          setNameConfig(name)
 
           if (projectId) {
             setRapProjectId(projectId, name)
