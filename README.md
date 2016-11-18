@@ -36,11 +36,11 @@
   + `mama dev --port=7777` 可以指定端口，如果指定80端口需sudo权限
   + `mama dev --daily=10.22.34.55` 可以切换接口访问真实daily接口，指定daily的ip地址
 
-daily分支发布到日常 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]
+daily分支发布到日常 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]，其中包含了spmlog打点
 
     mama daily
 
-master发布到cdn生产环境 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]
+master发布到cdn生产环境 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]，其中包含了spmlog打点
 
     mama publish
 

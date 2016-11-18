@@ -12,6 +12,7 @@ let params = util.parseParams(process.argv)
 
 module.exports = function() {
   let commands = [
+    'npm run spmlog',
     'npm run publish'
   ]
 
