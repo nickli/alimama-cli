@@ -39,7 +39,7 @@ module.exports = function() {
   let setSpmLogkey = function(logkey, name) {
     let fileName = name + '/gulpfile.js'
     let data = fs.readFileSync(fileName, 'utf8')
-    let result = data.replace(/logkey\s*\:\s*\'.+\'/, "logkey: '" + logkey + "'")
+    let result = data.replace(/logkey\s*\:\s*\'.*\'/, "logkey: '" + logkey + "'")
 
     fs.writeFileSync(fileName, result, 'utf8')
   }
