@@ -26,10 +26,10 @@ module.exports = function() {
   }
 
   //设置项目名称
-  let setNameConfig = function(name) {
+  let setNameConfig = function(group, name) {
     let indexFile = name + '/index.html'
     let data = fs.readFileSync(indexFile, 'utf8')
-    let result = data.replace(/thx\/scaffold/g, 'mm/' + name)
+    let result = data.replace(/thx\/scaffold/g, group + '/' + name)
     result = result.replace(/\<title\>.*\<\/title\>/, '<title>' + name + '</title>') //更改title
     fs.writeFileSync(indexFile, result, 'utf8')
 
@@ -59,10 +59,11 @@ module.exports = function() {
       return
     }
 
-    let gitUrlMatchResult = gitUrl.match(/^.+\/(.+)\.git\s*$/)
-    let name = gitUrlMatchResult && gitUrlMatchResult[1] || ''
+    let gitUrlMatchResult = gitUrl.match(/^.+[\:\/](.+)\/(.+)\.git\s*$/)
+    let name = gitUrlMatchResult && gitUrlMatchResult[2] || ''
+    let group = gitUrlMatchResult && gitUrlMatchResult[1] || ''
 
-    if (!name) {
+    if (!name || !group) {
       console.error('项目地址不合法'.red)
       rl.close()
       return
@@ -82,7 +83,7 @@ module.exports = function() {
 
         //执行clone scaffold脚手架仓库命令
         util.execCommand(commands).then(function() {
-          setNameConfig(name)
+          setNameConfig(group, name)
 
           if (projectId) {
             setRapProjectId(projectId, name)
