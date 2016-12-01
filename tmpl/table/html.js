@@ -12,12 +12,12 @@ module.exports = function(name) {
                 <option v-for="item in dropdownlist" value="{{item.id}}">{{item.name}}</option>
             </select>
         </div>
-        <div class="search-box pull-right"><span mx-click="search" class="bp-iconfont search-icon cp"></span>
-            <input v-model="keyWord" placeholder="请输入品牌名称或ID" />
+        <div class="search-box pull-right">
+            <input v-model="keyWord" mx-change="search" placeholder="请输入品牌名称或ID" />
         </div>
     </div>
     <div>
-        <table class="table" bx-name="app/gallery/table/table" style="margin-bottom: 0;">
+        <table class="table" bx-name="components/table" style="margin-bottom: 0;">
             <tr>
                 <th>数据列名</th>
                 <th>数据列名</th>

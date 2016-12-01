@@ -34,6 +34,21 @@ module.exports = Magix.View.extend({
         me.setVueHTML().then(function() {
 
         })
+    },
+
+    //分页组件事件
+    changePager: function(e) {
+        console.log('pagination')
+    },
+
+    //下拉组件事件
+    dropdownChange: function(e) {
+        console.log('dropdown')
+    },
+
+    //列表搜索柜
+    search: function(e) {
+        console.log('search')
     }
 });
     `
