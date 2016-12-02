@@ -21,26 +21,30 @@ module.exports = function(name) {
     </div>
     <div>
         <table class="table" bx-name="components/table" style="margin-bottom: 0;">
-            <tr>
-                <th>数据列名</th>
-                <th>数据列名</th>
-                <th>数据列名</th>
-            </tr>
-            <template v-for="item in list">
-                <tr :class="{'curr': !$index}">
-                    <td>{{item.id}}</td>
-                    <td>
-                    <span bx-name="components/popover" bx-options="{
-            placement: 'right',
-            content: '{{item.name || '-'}}'
-          }" class="txt-ellipsis" style="max-width:200px">{{item.name}}</span>
-                    </td>
-                    <td>{{item.value}}</td>
+            <thead>
+                <tr>
+                    <th>数据列名</th>
+                    <th>数据列名</th>
+                    <th>数据列名</th>
                 </tr>
-            </template>
-            <tr v-if="!list.length">
-                <td colspan="3" class="tc">暂无数据</td>
-            </tr>
+            </thead>
+            <tbody>
+                <template v-for="item in list">
+                    <tr :class="{'curr': !$index}">
+                        <td>{{item.id}}</td>
+                        <td>
+                        <span bx-name="components/popover" bx-options="{
+                placement: 'right',
+                content: '{{item.name || '-'}}'
+              }" class="txt-ellipsis" style="max-width:200px">{{item.name}}</span>
+                        </td>
+                        <td>{{item.value}}</td>
+                    </tr>
+                </template>
+                <tr v-if="!list.length">
+                    <td colspan="3" class="tc">暂无数据</td>
+                </tr>
+            </tbody>
         </table>
     </div>
     <div bx-name="components/pagination" data-total="{{count}}" data-cursor="{{pageNo}}" data-limit="{{pageSize}}" mx-change="changePager()"></div>
