@@ -12,8 +12,11 @@ module.exports = function(name) {
                 <option v-for="item in dropdownlist" value="{{item.id}}">{{item.name}}</option>
             </select>
         </div>
-        <div class="search-box pull-right">
-            <input v-model="keyWord" mx-change="search" placeholder="请输入品牌名称或ID" />
+        <div class="searchbox">
+            <label>
+                <span class="brixfont">&#xe61c;</span>
+                <input type="text" bx-name="components/suggest" placeholder="请输入关键词搜索">
+            </label>
         </div>
     </div>
     <div>
