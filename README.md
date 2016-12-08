@@ -37,13 +37,6 @@
   + `mama dev --daily=10.22.34.55` 可以切换接口访问真实daily接口，指定daily的ip地址
   + `mama dev --n=tnpm` 如果项目中node_modules还未安装，会先执行npm包安装，默认npm install，可以指定--n=tnpm用tnpm install
 
-daily分支发布到日常 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]，其中包含了spmlog打点
-
-    mama daily
-
-master发布到cdn生产环境 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]，其中包含了spmlog打点
-
-    mama publish
 
 在当前目录下生成预设的view文件，包含view.html, view.js，支持输入目录结构(exp: src/app/views/test)
 
@@ -51,6 +44,15 @@ master发布到cdn生产环境 [powerd by [alimama-deploy](https://www.npmjs.com
 可以指定特定的模板
   + `mama view --table`
   + `mama view --form`
+
+
+daily分支发布到日常 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]，其中包含了spmlog打点
+
+    mama daily
+
+master发布到cdn生产环境 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]，其中包含了spmlog打点
+
+    mama publish
 
 黄金令箭埋点 [powerd by [gulp-magix-spmlog](https://www.npmjs.com/package/gulp-magix-spmlog)]
 
