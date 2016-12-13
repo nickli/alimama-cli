@@ -12,7 +12,7 @@ let params = util.parseParams(process.argv)
 
 module.exports = function() {
   let commands = [
-    'npm run spmlog',
+    // 'npm run spmlog',
     'npm run daily' // npm run xxx 可以在不安装全局命令的情况下执行gulp daily之类，配置在package.json的scripts里
   ]
 
