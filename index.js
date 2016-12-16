@@ -8,7 +8,8 @@ var commands = [
   'daily', //daily发布
   'publish', //cdn发布
   'view', //生成最基础的Magix view, 包含html, js 文件
-  'spmlog' //spm埋点
+  'spmlog', //spm埋点
+  'rap' //spm埋点
 ]
 
 if (!param || commands.indexOf(param) === -1) {
