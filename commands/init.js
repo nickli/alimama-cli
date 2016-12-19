@@ -88,7 +88,6 @@ module.exports = function() {
 
           if (projectId) {
             setRapProjectId(projectId, name)
-            syncModels() //同步rap上的接口到本地manager.js
           }
           if (logkey) {
             setSpmLogkey(logkey, name)
@@ -113,9 +112,15 @@ module.exports = function() {
 
           lastCommands.push(npmInstallCommand)
 
-          util.execCommand(lastCommands).then(function() {
-            console.log('【项目初始化完成】'.green)
+          //同步rap上的接口到本地manager.js
+          syncModels(name).then(function() {
+            util.execCommand(lastCommands).then(function() {
+              console.log('【项目初始化完成】'.green)
+            })
+          }, function(err) {
+            console.log('同步rap接口失败，请检查projectId是否正确'.red)
           })
+
         })
 
         rl.close()
