@@ -9,6 +9,7 @@ let colors = require('colors')
 let readline = require('readline')
 let util = require('../util/util')
 let params = util.parseParams(process.argv)
+let syncModels = require('./models')
 
 module.exports = function() {
   let rl = readline.createInterface({
@@ -87,6 +88,7 @@ module.exports = function() {
 
           if (projectId) {
             setRapProjectId(projectId, name)
+            syncModels() //同步rap上的接口到本地manager.js
           }
           if (logkey) {
             setSpmLogkey(logkey, name)

@@ -21,6 +21,7 @@ const METHOD_MAPS = {
 }
 
 module.exports = function() {
+  console.log('开始同步rap上的models接口到本地...'.yellow)
   util.getConfigFile('matfile.js').then(function(path) {
     let matFile = path.join('/') + '/matfile.js'
     let data = fs.readFileSync(matFile, 'utf8')
@@ -59,7 +60,7 @@ module.exports = function() {
 
         util.getConfigFile('gulpfile.js').then(function(path) {
           fse.outputFile(path.join('/') + '/src/app/models/manager.js', MANAGER_TEMPLATE)
-          console.log('接口文件manager.js文件创建完毕\n文件目录src/app/models/mamager.js'.green)
+          console.log('接口文件src/app/models/manager.js文件创建完毕'.green)
         })
       }
     })
