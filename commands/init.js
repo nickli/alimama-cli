@@ -6,16 +6,52 @@
 let exec = require('child_process').exec
 let fs = require('fs')
 let colors = require('colors')
-let readline = require('readline')
+  // let readline = require('readline')
 let util = require('../util/util')
 let params = util.parseParams(process.argv)
 let syncModels = require('./models')
+const inquirer = require('inquirer')
 
 module.exports = function() {
-  let rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  })
+
+  let questions = [{
+    type: 'list',
+    name: 'scaffoldGitUrl',
+    message: '【请选择脚手架类型】:',
+    choices: [{
+      name: 'scaffold: 适用于bp后台管理系统类型的脚手架',
+      value: 'git@gitlab.alibaba-inc.com:thx/scaffold.git'
+    }, {
+      name: 'minisite-scaffold: 适用于bp前台minisite类型的脚手架',
+      value: 'git@gitlab.alibaba-inc.com:mm/minisite-scaffold.git'
+    }]
+  }, {
+    type: 'input',
+    name: 'gitUrl',
+    message: '【请输入项目的git仓库地址】:',
+    validate: function(value) {
+      if (!value.trim()) {
+        return '请输入项目git仓库地址'
+      }
+
+      let gitUrl = parseGitUrl(value)
+      let name = gitUrl.name
+      let group = gitUrl.group
+
+      if (!name || !group) {
+        return '地址不合法，请重新输入';
+      }
+      return true
+    }
+  }, {
+    type: 'input',
+    name: 'projectId',
+    message: '【请输入RAP的projectId，选填】:'
+  }, {
+    type: 'input',
+    name: 'logkey',
+    message: '【请输入黄金令箭logkey，选填】:'
+  }]
 
   //读取matfile.js，写入rap的projectId
   let setRapProjectId = function(projectId, name) {
@@ -50,81 +86,69 @@ module.exports = function() {
     fs.writeFileSync(fileName, result, 'utf8')
   }
 
-  /*
-    根据项目名称创建项目目录，并clone脚手架代码到本地，然后更改git remote为项目git地址
-   */
-  rl.question('【请输入gitlab上创建好的仓库git地址】：'.yellow, function(gitUrl) {
-    if (!gitUrl) {
-      console.error('项目地址不能为空'.red)
-      rl.close()
-      return
-    }
-
+  //解析giturl提取项目名及分组名
+  let parseGitUrl = function(gitUrl) {
+    gitUrl = gitUrl.trim()
     let gitUrlMatchResult = gitUrl.match(/^.+[\:\/](.+)\/(.+)\.git\s*$/)
     let name = gitUrlMatchResult && gitUrlMatchResult[2] || ''
     let group = gitUrlMatchResult && gitUrlMatchResult[1] || ''
-
-    if (!name || !group) {
-      console.error('项目地址不合法'.red)
-      rl.close()
-      return
+    return {
+      name: name,
+      group: group
     }
+  }
 
-    rl.question('【请输入RAP上建好的项目的projectId,非必填】：'.yellow, function(projectId) {
-      rl.question('【请输入埋点用的黄金令箭logkey,非必填】：'.yellow, function(logkey) {
+  // 根据项目名称创建项目目录，并clone脚手架代码到本地，然后更改git remote为项目git地址
+  inquirer.prompt(questions).then(function(answers) {
+    let gitUrl = answers.gitUrl.trim()
+    let name = parseGitUrl(gitUrl).name
+    let group = parseGitUrl(gitUrl).group
+    let commands = [
+      'mkdir ' + name,
+      'cd ' + name,
+      'git init',
+      'git remote add origin ' + answers.scaffoldGitUrl,
+      'git pull origin master',
+      'git remote set-url origin ' + gitUrl
+    ]
 
-        let commands = [
-          'mkdir ' + name,
-          'cd ' + name,
-          'git init',
-          'git remote add origin git@gitlab.alibaba-inc.com:thx/scaffold.git',
-          'git pull origin master',
-          'git remote set-url origin ' + gitUrl
-        ]
+    //执行clone scaffold脚手架仓库命令
+    util.execCommand(commands).then(function() {
+      setNameConfig(group, name)
 
-        //执行clone scaffold脚手架仓库命令
-        util.execCommand(commands).then(function() {
-          setNameConfig(group, name)
+      if (answers.projectId) {
+        setRapProjectId(answers.projectId, name)
+      }
+      if (answers.logkey) {
+        setSpmLogkey(answers.logkey, name)
+      }
 
-          if (projectId) {
-            setRapProjectId(projectId, name)
-          }
-          if (logkey) {
-            setSpmLogkey(logkey, name)
-          }
+      //设置完projectId，logkey之后，提交代码并开始安装npm包
+      let lastCommands = [
+        'cd ' + name, //要进入目录才行
+        'git add . -A',
+        'git commit -m "first commit by alimama-cli"',
+        'git push origin master',
+        'echo 【开始安装项目相关的npm包，请稍候...】'
+      ]
 
-          //设置完projectId，logkey之后，提交代码并开始安装npm包
-          let lastCommands = [
-            'cd ' + name, //要进入目录才行
-            'git add . -A',
-            'git commit -m "first commit by alimama-cli"',
-            'git push origin master',
-            'echo 【开始安装项目相关的npm包，请稍等...】'
-          ]
+      //默认用npm install安装包，可以配置mama init --n=tnpm 来选择tnpm install
+      let npmInstallCommand = 'npm install'
+      if (params.n) {
+        npmInstallCommand = params.n + ' install'
+      }
 
-          //默认用npm install安装包，可以配置mama init --n=cnpm 来选择cnpm install
-          let npmInstallCommand = 'npm install'
+      lastCommands.push(npmInstallCommand)
 
-          for (let k in params) {
-            npmInstallCommand = k + ' install'
-            break
-          }
-
-          lastCommands.push(npmInstallCommand)
-
-          //同步rap上的接口到本地manager.js
-          syncModels(name).then(function() {
-            util.execCommand(lastCommands).then(function() {
-              console.log('【项目初始化完成】'.green)
-            })
-          }, function(err) {
-            console.log('同步rap接口失败，请检查projectId是否正确'.red)
-          })
-
+      //同步rap上的接口到本地manager.js
+      syncModels(name).then(function() {
+        util.execCommand(lastCommands).then(function() {
+          console.log('【项目初始化完成】'.green)
         })
-
-        rl.close()
+      }, function(err) {
+        console.log('同步rap接口失败，请检查projectId是否正确'.red)
       })
+
     })
   })
 

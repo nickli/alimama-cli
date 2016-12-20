@@ -10,38 +10,49 @@ let readline = require('readline')
 let util = require('../util/util')
 let params = util.parseParams(process.argv)
 let fse = require('fs-extra')
-let htmlTplFn = require('../tmpl/html.js') //基础模板
-let jsTplFn = require('../tmpl/js.js') //基础js
-let rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-})
-
-
-// if (params.t) {
-//   htmlTplFn = require('../tmpl/'+ params.t +'/html.js') //基础模板
-//   jsTplFn = require('../tmpl/'+ params.t +'/js.js') //基础js
-// }
+const inquirer = require('inquirer')
 
 module.exports = function() {
+  let questions = [{
+    type: 'list',
+    name: 'theme',
+    message: '【请选择view的模板类型】:',
+    choices: [{
+      name: 'blank: 基础空白页',
+      value: 'blank'
+    }, {
+      name: 'table: 包含表格的列表页',
+      value: 'table'
+    }, {
+      name: 'form : 基础表单提交页面',
+      value: 'form'
+    }]
+  }, {
+    type: 'input',
+    name: 'viewpath',
+    message: '【请输入view的生成path，从当前目录算起】:',
+    default: function() {
+      // return 'Doe';
+    },
+    validate: function(value) {
+      let viewpath = value.trim()
 
-  //如果传入--t=table，则加载table的模板
-  for (let k in params) {
-    try {
-      htmlTplFn = require('../tmpl/' + k + '/html.js') //基础模板
-      jsTplFn = require('../tmpl/' + k + '/js.js') //基础js
-    } catch (err) {
-      console.log('不存在该模板，请确认模板名是否正确'.red)
-      return rl.close()
+      if (!viewpath) {
+        return '请输入正确的path';
+      }
+      return true
     }
-    break;
-  }
+  }]
 
-  rl.question('【请输入viewName，支持目录结构】：'.yellow, function(name) {
-    let splits = name.split('/')
+
+  inquirer.prompt(questions).then(function(answers) {
+    let viewpath = answers.viewpath.trim()
+    let htmlTplFn = require('../tmpl/' + answers.theme + '/html.js') //基础模板
+    let jsTplFn = require('../tmpl/' + answers.theme + '/js.js') //基础js
+    let splits = viewpath.split('/')
     let fileName = splits[splits.length - 1]
-    let jsFile = name + '.js'
-    let htmlFile = name + '.html'
+    let jsFile = viewpath + '.js'
+    let htmlFile = viewpath + '.html'
 
     fse.outputFile(jsFile, jsTplFn(fileName), 'utf8', function(err) {
       if (err) {
@@ -57,6 +68,6 @@ module.exports = function() {
       })
     })
 
-    rl.close()
   })
+
 }
