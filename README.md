@@ -17,11 +17,12 @@
 
     mama init
 
+  + 选择脚手架类型，目前支持两种，BP后台管理脚手架，Minisite脚手架
   + 输入你在gitlab创建好的项目的仓库地址(会在当前目录下创建以你仓库名称为名的文件夹)
   + 输入你在RAP上创建好的项目的projectId(非必填)
   + 输入你在黄金令箭上创建好的场景ID[非必填]
 
-系统会自动从[scaffold](http://gitlab.alibaba-inc.com/thx/scaffold)脚手架仓库`clone`代码到你的本地，并且设置`git remote`为你在gitlab上创建的项目，并且`npm install`所有的工具包，你可以指定 `mama init --cnpm|tnpm` 来更改为`cnpm|tnpm install`避免被墙
+系统会自动从[scaffold](http://gitlab.alibaba-inc.com/thx/scaffold)脚手架仓库`clone`代码到你的本地，并且设置`git remote`为你在gitlab上创建的项目，并且`npm install`所有的工具包，你可以指定 `mama init --n=cnpm|tnpm` 来更改为`cnpm|tnpm install`避免被墙
 
   ![mama init](https://img.alicdn.com/tps/TB13s6gOXXXXXX9XXXXXXXXXXXX-475-306.png)
 
@@ -41,9 +42,9 @@
 在当前目录下生成预设的view文件，包含view.html, view.js，支持输入目录结构(exp: src/app/views/test)
 
     mama view
-可以指定特定的模板
-  + `mama view --table`
-  + `mama view --form`
+
+  + 选择你要的view模板，目前支持blank, table, form三种
+  + 输入你要生成的view的path，相对于当前目录
 
 
 daily分支发布到日常 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]，其中包含了spmlog打点
