@@ -30,6 +30,7 @@
 目前支持的脚手架类型：
 
 1、[BP后台管理脚手架](http://gitlab.alibaba-inc.com/thx/scaffold)
+
 2、[Minisite脚手架](http://gitlab.alibaba-inc.com/mm/minisite-scaffold)
 
 ## 支持的命令列表：
