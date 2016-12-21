@@ -30,35 +30,38 @@
 
 ## 支持的命令列表：
 
-运行mat本地服务器，默认端口1234，默认启动接口rap化（支持反向代理）
-
     mama dev
+
+运行mat本地服务器，默认端口1234，默认启动接口rap化（支持反向代理）
 
   + `mama dev --port=7777` 可以指定端口，如果指定80端口需sudo权限
   + `mama dev --daily=10.22.34.55` 可以切换接口访问真实daily接口，指定daily的ip地址
   + `mama dev --n=tnpm` 如果项目中node_modules还未安装，会先执行npm包安装，默认npm install，可以指定--n=tnpm用tnpm install
 
 
-在当前目录下生成预设的view文件，包含view.html, view.js，支持输入目录结构(exp: src/app/views/test)
-
     mama view
+
+在当前目录下生成预设的view文件，包含view.html, view.js，支持输入目录结构(exp: src/app/views/test)
 
   + 选择你要的view模板，目前支持blank, table, form三种
   + 输入你要生成的view的path，相对于当前目录
 
-根据当前项目RAP的projectId，自动生成manager.js接口集合文件
 
     mama models
 
+根据当前项目RAP的projectId，自动生成manager.js接口集合文件
 
-daily分支发布到日常 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]，其中包含了spmlog打点
 
     mama daily
 
-master发布到cdn生产环境 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]，其中包含了spmlog打点
+daily分支发布到日常 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]，其中包含了spmlog打点
+
 
     mama publish
 
-黄金令箭埋点 [powerd by [gulp-magix-spmlog](https://www.npmjs.com/package/gulp-magix-spmlog)]
+master发布到cdn生产环境 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]，其中包含了spmlog打点
+
 
     mama spmlog
+
+黄金令箭埋点 [powerd by [gulp-magix-spmlog](https://www.npmjs.com/package/gulp-magix-spmlog)]
