@@ -17,16 +17,19 @@
 
     mama init
 
-  + 选择脚手架类型，目前支持两种，BP后台管理脚手架，Minisite脚手架
-  + 输入你在gitlab创建好的项目的仓库地址(会在当前目录下创建以你仓库名称为名的文件夹)
-  + 输入你在RAP上创建好的项目的projectId(非必填)
-  + 输入你在黄金令箭上创建好的场景ID[非必填]
+  + 选择脚手架类型 (目前支持两种: 1、BP后台管理脚手架; 2、Minisite脚手架;)
+  + 输入你在gitlab创建好的项目的仓库地址 (会在当前目录下创建以你仓库名称为名的文件夹)
+  + 输入你在RAP上创建好的项目的projectId [非必填]
+  + 输入你在黄金令箭上创建好的场景ID [非必填]
 
-系统会自动从[scaffold](http://gitlab.alibaba-inc.com/thx/scaffold)脚手架仓库`clone`代码到你的本地，并且设置`git remote`为你在gitlab上创建的项目，并且`npm install`所有的工具包，你可以指定 `mama init --n=cnpm|tnpm` 来更改为`cnpm|tnpm install`避免被墙
+系统会自动从相应类型的脚手架仓库`clone`代码到你的本地，并且设置`git remote`为你在gitlab上创建的项目，并且`npm install`所有的工具包，你可以指定 `mama init --n=cnpm|tnpm` 来更改为`cnpm|tnpm install`避免被墙
 
   ![mama init](https://img.alicdn.com/tps/TB13s6gOXXXXXX9XXXXXXXXXXXX-475-306.png)
 
 
+目前支持的脚手架类型：
+1、[BP后台管理脚手架](http://gitlab.alibaba-inc.com/thx/scaffold)
+2、[Minisite脚手架](http://gitlab.alibaba-inc.com/mm/minisite-scaffold)
 
 ## 支持的命令列表：
 
