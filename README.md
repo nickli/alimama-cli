@@ -46,6 +46,10 @@
   + 选择你要的view模板，目前支持blank, table, form三种
   + 输入你要生成的view的path，相对于当前目录
 
+根据当前项目RAP的projectId，自动生成manager.js接口集合文件
+
+    mama models
+
 
 daily分支发布到日常 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]，其中包含了spmlog打点
 
