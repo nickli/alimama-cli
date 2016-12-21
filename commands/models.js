@@ -65,15 +65,16 @@ var Model = require('app/models/model')
 var M = Magix.Manager.create(Model);
 M.registerModels(${JSON.stringify(models, null, 2)});
 return M;`
+          const managerjs = '/src/app/models/manager.js'
 
           util.getConfigFile(matFilePath).then(function(path) {
             if (name) {
-              var managerjsPath = path.join('/') + '/' + name + '/src/app/models/manager.js'
+              var managerjsPath = path.join('/') + '/' + name + managerjs
             } else {
-              var managerjsPath = path.join('/') + '/src/app/models/manager.js'
+              var managerjsPath = path.join('/') + managerjs
             }
             fse.outputFile(managerjsPath, MANAGER_TEMPLATE)
-            console.log('接口文件src/app/models/manager.js文件创建完毕'.green)
+            console.log(('接口文件' + managerjs + '文件创建完毕').green)
             resolve()
           })
         }
