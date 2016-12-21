@@ -41,8 +41,9 @@
 
 #### # mama dev
 
-运行mat本地服务器，默认端口1234，默认启动接口rap化（支持反向代理）
+运行mat本地服务器，默认端口1234
 
+  + `mama dev` 默认开启接口rap化模拟
   + `mama dev --port=7777` 可以指定端口，如果指定80端口需sudo权限
   + `mama dev --daily=10.22.34.55` 可以切换接口访问真实daily接口，指定daily的ip地址
   + `mama dev --n=tnpm` 如果项目中node_modules还未安装，会先执行npm包安装，默认npm install，可以指定--n=tnpm用tnpm install
