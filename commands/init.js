@@ -19,10 +19,10 @@ module.exports = function() {
     name: 'scaffoldGitUrl',
     message: '【请选择脚手架类型】:',
     choices: [{
-      name: 'scaffold: 适用于bp后台管理系统类型的脚手架',
+      name: 'scaffold : 适用于bp后台管理系统类型的脚手架',
       value: 'git@gitlab.alibaba-inc.com:thx/scaffold.git'
     }, {
-      name: 'minisite-scaffold: 适用于bp前台minisite类型的脚手架',
+      name: 'minisite : 适用于bp前台minisite类型的脚手架',
       value: 'git@gitlab.alibaba-inc.com:mm/minisite-scaffold.git'
     }]
   }, {

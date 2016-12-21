@@ -18,13 +18,13 @@ module.exports = function() {
     name: 'theme',
     message: '【请选择view的模板类型】:',
     choices: [{
-      name: 'blank: 基础空白页',
+      name: 'blank : 基础空白页',
       value: 'blank'
     }, {
-      name: 'table: 包含表格的列表页',
+      name: 'table : 包含表格的列表页',
       value: 'table'
     }, {
-      name: 'form : 基础表单提交页面',
+      name: 'form  : 基础表单提交页面',
       value: 'form'
     }]
   }, {
