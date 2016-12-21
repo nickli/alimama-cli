@@ -41,7 +41,7 @@
 
 #### # mama dev
 
-运行mat本地服务器，默认端口1234
+运行mat本地服务器，默认端口1234，请访问localhost:1234
 
   + `mama dev` 默认开启接口rap化模拟
   + `mama dev --port=7777` 可以指定端口，如果指定80端口需sudo权限
