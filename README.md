@@ -34,7 +34,7 @@
 
 ## 支持的命令列表：
 
-### #mama dev
+#### # mama dev
 
 运行mat本地服务器，默认端口1234，默认启动接口rap化（支持反向代理）
 
@@ -43,7 +43,7 @@
   + `mama dev --n=tnpm` 如果项目中node_modules还未安装，会先执行npm包安装，默认npm install，可以指定--n=tnpm用tnpm install
 
 
-### #mama view
+#### # mama view
 
 在当前目录下生成预设的view文件，包含view.html, view.js，支持输入目录结构(exp: src/app/views/test)
 
