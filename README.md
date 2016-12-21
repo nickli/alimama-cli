@@ -34,6 +34,10 @@
 
 ## 支持的命令列表：
 
+#### # mama init
+
+初始化项目
+
 #### # mama dev
 
 运行mat本地服务器，默认端口1234，默认启动接口rap化（支持反向代理）
@@ -51,21 +55,21 @@
   + 输入你要生成的view的path，相对于当前目录
 
 
-      mama models
+#### # mama models
 
 根据当前项目RAP的projectId，自动生成manager.js接口集合文件
 
 
-    mama daily
+#### # mama daily
 
 daily分支发布到日常 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]
 
 
-    mama publish
+#### # mama publish
 
 master发布到cdn生产环境 [powerd by [alimama-deploy](https://www.npmjs.com/package/alimama-deploy)]
 
 
-    mama spmlog
+#### # mama spmlog
 
 黄金令箭埋点 [powerd by [gulp-magix-spmlog](https://www.npmjs.com/package/gulp-magix-spmlog)]
