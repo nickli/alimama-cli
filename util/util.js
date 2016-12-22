@@ -61,8 +61,8 @@ let util = {
 
   /**
    * 递归往上寻找matfile.js gulpfile.js等文件
-   * @param  {[type]} fileName [description]
-   * @return {[type]}          [description]
+   * @param  {[String]} fileName 需要查找的目标文件名称
+   * @return {[Array]}  返回找到目标文件的目录路径，放在一个数组里
    */
   getConfigFile: function(fileName) {
     var cwd = process.cwd().split('/')

@@ -59,7 +59,7 @@
 
 #### # mama models
 
-根据当前项目RAP的projectId，自动生成manager.js接口集合文件
+根据当前项目RAP的projectId，自动生成manager.js接口集合文件 (默认在mama init初始化项目时就会自动执行该命令)
 
 
 #### # mama daily
