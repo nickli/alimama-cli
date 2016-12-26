@@ -98,57 +98,62 @@ module.exports = function() {
     }
   }
 
-  // 根据项目名称创建项目目录，并clone脚手架代码到本地，然后更改git remote为项目git地址
-  inquirer.prompt(questions).then(function(answers) {
-    let gitUrl = answers.gitUrl.trim()
-    let name = parseGitUrl(gitUrl).name
-    let group = parseGitUrl(gitUrl).group
-    let commands = [
-      'mkdir ' + name,
-      'cd ' + name,
-      'git init',
-      'git remote add origin ' + answers.scaffoldGitUrl,
-      'git pull origin master',
-      'git remote set-url origin ' + gitUrl
-    ]
-
-    //执行clone scaffold脚手架仓库命令
-    util.execCommand(commands).then(function() {
-      setNameConfig(group, name)
-
-      if (answers.projectId) {
-        setRapProjectId(answers.projectId, name)
-      }
-      if (answers.logkey) {
-        setSpmLogkey(answers.logkey, name)
-      }
-
-      //设置完projectId，logkey之后，提交代码并开始安装npm包
-      let lastCommands = [
-        'cd ' + name, //要进入目录才行
-        'git add . -A',
-        'git commit -m "first commit by alimama-cli"',
-        'git push origin master',
-        'echo 【开始安装项目相关的npm包，请稍候...】'
+  //判断下是否是已经init过的项目，根据是看下有没有combine-tool-config.js文件
+  util.getConfigFile('combine-tool-config.js').then(function() {
+    console.log('该项目已经初始化过，无须再init，请执行mama dev进行开发'.red)
+  }, function(err) {
+    // 根据项目名称创建项目目录，并clone脚手架代码到本地，然后更改git remote为项目git地址
+    inquirer.prompt(questions).then(function(answers) {
+      let gitUrl = answers.gitUrl.trim()
+      let name = parseGitUrl(gitUrl).name
+      let group = parseGitUrl(gitUrl).group
+      let commands = [
+        'mkdir ' + name,
+        'cd ' + name,
+        'git init',
+        'git remote add origin ' + answers.scaffoldGitUrl,
+        'git pull origin master',
+        'git remote set-url origin ' + gitUrl
       ]
 
-      //默认用npm install安装包，可以配置mama init --n=tnpm 来选择tnpm install
-      let npmInstallCommand = 'npm install'
-      if (params.n) {
-        npmInstallCommand = params.n + ' install'
-      }
+      //执行clone scaffold脚手架仓库命令
+      util.execCommand(commands).then(function() {
+        setNameConfig(group, name)
 
-      lastCommands.push(npmInstallCommand)
+        if (answers.projectId) {
+          setRapProjectId(answers.projectId, name)
+        }
+        if (answers.logkey) {
+          setSpmLogkey(answers.logkey, name)
+        }
 
-      //同步rap上的接口到本地manager.js
-      syncModels(name).then(function() {
-        util.execCommand(lastCommands).then(function() {
-          console.log('【项目初始化完成】'.green)
+        //设置完projectId，logkey之后，提交代码并开始安装npm包
+        let lastCommands = [
+          'cd ' + name, //要进入目录才行
+          'git add . -A',
+          'git commit -m "first commit by alimama-cli"',
+          'git push origin master',
+          'echo 【开始安装项目相关的npm包，请稍候...】'
+        ]
+
+        //默认用npm install安装包，可以配置mama init --n=tnpm 来选择tnpm install
+        let npmInstallCommand = 'npm install'
+        if (params.n) {
+          npmInstallCommand = params.n + ' install'
+        }
+
+        lastCommands.push(npmInstallCommand)
+
+        //同步rap上的接口到本地manager.js
+        syncModels(name).then(function() {
+          util.execCommand(lastCommands).then(function() {
+            console.log('【项目初始化完成】'.green)
+          })
+        }, function(err) {
+          console.log('同步rap接口失败，请检查projectId是否正确'.red)
         })
-      }, function(err) {
-        console.log('同步rap接口失败，请检查projectId是否正确'.red)
-      })
 
+      })
     })
   })
 
