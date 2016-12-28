@@ -1,6 +1,6 @@
 {
   "name": "alimama-cli",
-  "version": "0.0.83",
+  "version": "0.0.84",
   "description": "alimama command line tool!",
   "preferGlobal": "true",
   "bin": {

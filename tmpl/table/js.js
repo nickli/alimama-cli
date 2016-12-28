@@ -6,6 +6,22 @@ module.exports = Magix.View.extend({
     tmpl: "@${name}.html",
     init: function() {
         var me = this;
+        me.initData()
+    },
+    initData: function() {
+
+    },
+    getData: function() {
+        var me = this
+        var d = $.Deferred()
+
+        me.fetchAll([{
+            name: 'apiname'
+        }], function(err, model) {
+            d.resolve(model.get('data'))
+        })
+
+        return d.promise()
     },
     render: function(e) {
         var me = this;
