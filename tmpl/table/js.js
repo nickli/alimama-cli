@@ -35,7 +35,8 @@ module.exports = Magix.View.extend({
     },
     render: function(e) {
         var me = this;
-        me.data = {
+
+        $.extend(true, me.data, {
             value: 1,
             dropdownlist: [{
                 id: 1,
@@ -56,7 +57,8 @@ module.exports = Magix.View.extend({
             count: 100,
             pageNo: 1,
             pageSize: 30
-        }
+        })
+
         me.setVueHTML().then(function() {
 
         })
