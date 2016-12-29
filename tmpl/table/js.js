@@ -4,8 +4,10 @@ var Magix = require('magix')
 
 module.exports = Magix.View.extend({
     tmpl: "@${name}.html",
-    init: function() {
+    init: function(options) {
         var me = this;
+
+        me.options = options
         me.initData()
         me.observeParams('pageNo,pageSize', function() {
             me.getData().then(function(data) {
