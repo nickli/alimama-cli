@@ -7,18 +7,28 @@ module.exports = Magix.View.extend({
     init: function() {
         var me = this;
         me.initData()
+        me.observeParams('pageNo,pageSize', function() {
+            me.getData().then(function(data) {
+
+            })
+        });
     },
     initData: function() {
+        $.extend(true, this.data, {
 
+        })
     },
     getData: function() {
         var me = this
+        var urlParams = {}
         var d = $.Deferred()
 
         me.fetchAll([{
-            name: 'apiname'
+            name: '',
+            urlParams: urlParams
         }], function(err, model) {
-            d.resolve(model.get('data'))
+            var data = model.get('data')
+            d.resolve(data)
         })
 
         return d.promise()
