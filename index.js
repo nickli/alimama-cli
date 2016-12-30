@@ -1,7 +1,8 @@
 #!/usr/bin/env node
+
 var colors = require('colors')
 var param = process.argv[2]
-var jsonfile = require('jsonfile')
+var package = require('./package')
 
 //所有命令集合
 var commands = [
@@ -16,9 +17,7 @@ var commands = [
 
 //打印版本号
 if (param === '-v' || param === '--version') {
-  jsonfile.readFile('./package.json', function(err, obj) {
-    console.log(obj.version)
-  })
+  console.log(package.version)
   return
 }
 
