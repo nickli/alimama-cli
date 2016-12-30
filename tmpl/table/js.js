@@ -17,28 +17,6 @@ module.exports = Magix.View.extend({
     },
     initData: function() {
         $.extend(true, this.data, {
-
-        })
-    },
-    getData: function() {
-        var me = this
-        var urlParams = {}
-        var d = $.Deferred()
-
-        me.fetchAll([{
-            name: '',
-            urlParams: urlParams
-        }], function(err, model) {
-            var data = model.get('data')
-            d.resolve(data)
-        })
-
-        return d.promise()
-    },
-    render: function(e) {
-        var me = this;
-
-        $.extend(true, me.data, {
             value: 1,
             dropdownlist: [{
                 id: 1,
@@ -60,6 +38,24 @@ module.exports = Magix.View.extend({
             pageNo: 1,
             pageSize: 30
         })
+    },
+    getData: function() {
+        var me = this
+        var urlParams = {}
+        var d = $.Deferred()
+
+        me.fetchAll([{
+            name: '',
+            urlParams: urlParams
+        }], function(err, model) {
+            var data = model.get('data')
+            d.resolve(data)
+        })
+
+        return d.promise()
+    },
+    render: function(e) {
+        var me = this;
 
         me.setVueHTML().then(function() {
 
