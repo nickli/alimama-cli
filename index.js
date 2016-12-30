@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 var colors = require('colors')
 var param = process.argv[2]
+var jsonfile = require('jsonfile')
+
 //所有命令集合
 var commands = [
   'init', //项目初始化
@@ -12,6 +14,15 @@ var commands = [
   'models' //从rap同步接口到本地manager.js
 ]
 
+//打印版本号
+if (param === '-v' || param === '--version') {
+  jsonfile.readFile('./package.json', function(err, obj) {
+    console.log(obj.version)
+  })
+  return
+}
+
+//
 if (!param || commands.indexOf(param) === -1) {
   console.error('请输入正确的命令（mama init等）'.red)
   return
