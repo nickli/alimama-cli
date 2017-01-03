@@ -144,14 +144,20 @@ module.exports = function() {
 
         lastCommands.push(npmInstallCommand)
 
-        //同步rap上的接口到本地manager.js
-        syncModels(name).then(function() {
+        if (answers.projectId) {
+          //同步rap上的接口到本地manager.js
+          syncModels(name).then(function() {
+            util.execCommand(lastCommands).then(function() {
+              console.log('【项目初始化完成】'.green)
+            })
+          }, function(err) {
+            console.log('同步rap接口失败，请检查projectId是否正确'.red)
+          })
+        } else { //没填projectId，则不执行同步rap的models
           util.execCommand(lastCommands).then(function() {
             console.log('【项目初始化完成】'.green)
           })
-        }, function(err) {
-          console.log('同步rap接口失败，请检查projectId是否正确'.red)
-        })
+        }
 
       })
     })
