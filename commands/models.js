@@ -40,7 +40,17 @@ module.exports = function(name) {
             module.pageList.forEach(function(page, _i) {
               page.actionList.forEach(function(action, __i) {
                 var apiUrl = action.requestUrl
-                var urlSplit = action.requestUrl.replace(/\..+?$/, '').split('/')
+                console.log(apiUrl)
+
+                // 正则解析url转为name
+                // http://etao.alimama.net/bp/myActivity/activityInfo' --> /bp/myActivity/activityInfo
+                var regExp = /(?:.+\.[^/]+)?(\/[^.]+)(?:\..+)?/
+                var regExpExec = regExp.exec(apiUrl)
+                if (!regExpExec) {
+                  console.log('您的rap接口url设置格式不正确，参考格式：/api/test.json'.red)
+                  return reject()
+                }
+                var urlSplit = regExpExec[1].split('/')
 
                 for (var i = 0; i < urlSplit.length; i++) {
                   if (urlSplit[i] === '') {
@@ -62,9 +72,9 @@ module.exports = function(name) {
 
           const MANAGER_TEMPLATE = `var Magix = require('magix')
 var Model = require('app/models/model')
-var M = Magix.Manager.create(Model);
-M.registerModels(${JSON.stringify(models, null, 2)});
-return M;`
+var Manager = Magix.Manager.create(Model);
+Manager.registerModels(${JSON.stringify(models, null, 2)});
+module.exports = Manager;`
           const managerjs = '/src/app/models/manager.js'
 
           util.getConfigFile(matFilePath).then(function(path) {

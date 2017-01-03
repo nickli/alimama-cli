@@ -151,7 +151,7 @@ module.exports = function() {
               console.log('【项目初始化完成】'.green)
             })
           }, function(err) {
-            console.log('同步rap接口失败，请检查projectId是否正确'.red)
+            console.log('同步rap接口失败，可能您的projectId没有设置正确，亦或您的rap接口url格式有误'.red)
           })
         } else { //没填projectId，则不执行同步rap的models
           util.execCommand(lastCommands).then(function() {
