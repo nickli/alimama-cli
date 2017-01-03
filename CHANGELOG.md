@@ -4,8 +4,8 @@
 3. 优化 `mama view` 的tmpl模板内容
 4. 优化 `mama view` 输入类型改为选择类型
 
-## 0.0.90
+## 0.0.90 - 2017/01/03
 1. `mama init` 没填projectId时，不执行 `mama models` 命令
 
-## 0.0.91
+## 0.0.91 - 2017/01/03
 1. 修正 `mama models` 解析rap的接口url出错的问题
